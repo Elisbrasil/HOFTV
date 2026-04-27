@@ -5,39 +5,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HOFOFOCA — Manda o Seu!</title>
-
-  <!-- Fontes Google -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;700;900&family=Barlow+Condensed:wght@400;600;700;900&family=Big+Shoulders+Display:wght@700;900&display=swap" rel="stylesheet" />
-
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-  <!-- ═══════════════════════════════════════
-       PARALLAX BG LAYERS
-  ═══════════════════════════════════════ -->
+  <!-- PARALLAX BG -->
   <div class="parallax-bg" id="parallaxBg"></div>
   <div class="noise-overlay"></div>
 
-  <!-- ═══════════════════════════════════════
-       SEÇÃO 0 — HERO
-  ═══════════════════════════════════════ -->
+  <!-- ══════════════════════════
+       HERO
+  ══════════════════════════ -->
   <section class="section section--hero" id="hero">
-
-    <div class="hero__badge">🔴 AO VIVO</div>
-
-    <div class="hero__tv-wrap parallax-element" data-speed="0.3">
-      <img src="assets/mic-dark.png" alt="HOFTV" class="hero__tv-img" />
-    </div>
-
-    <div class="hero__content">
+    <div class="hero__inner">
+      <div class="hero__badge">
+        <span class="badge__dot"></span> AO VIVO
+      </div>
       <p class="hero__eyebrow">HOFTV apresenta</p>
       <h1 class="hero__title">
-        <span class="title-line glitch" data-text="HOFOFOCA">HOFOFOCA</span>
-        <span class="title-sub">Manda o Seu!</span>
+        <span class="glitch" data-text="HOFOFOCA">HOFOFOCA</span>
+        <em>Mande a Sua!</em>
       </h1>
       <p class="hero__desc">
         Sua identidade está <strong>100% protegida.</strong><br />
@@ -49,120 +40,93 @@
         <span class="tag tag--orange">Barracos</span>
         <span class="tag tag--purple">Golpes</span>
       </div>
-      <a href="#step-1" class="btn btn--primary scroll-down">
-        Manda Ver
-        <span class="btn__arrow">↓</span>
+      <a href="#step-1" class="btn btn--primary scroll-cta">
+        Manda Ver <span class="arrow">↓</span>
       </a>
     </div>
-
     <div class="scroll-hint">role para baixo</div>
   </section>
 
-  <!-- ═══════════════════════════════════════
-       FORM WRAPPER
-  ═══════════════════════════════════════ -->
+  <!-- ══════════════════════════
+       FORM
+  ══════════════════════════ -->
   <main class="form-wrapper">
-    <form id="hofofocaForm" action="https://formspree.io/f/SEU_ID_AQUI" method="POST" enctype="multipart/form-data" novalidate>
+    <form id="hofofocaForm" action="https://formspree.io/f/mlgakkgv" method="POST" enctype="multipart/form-data" novalidate>
 
-      <!-- ───────────────────────────────
-           STEP 1 — TIPO DE CONTEÚDO
-      ─────────────────────────────────── -->
+      <!-- STEP 1 -->
       <section class="section section--step" id="step-1" data-step="1">
-        <div class="section__bg-accent" style="--accent: var(--azul)"></div>
-
+        <div class="step__accent" style="--c: var(--azul)"></div>
         <div class="step__header">
           <span class="step__number">01</span>
           <h2 class="step__title">Que tipo de<br /><em>história</em> é essa?</h2>
-          <p class="step__hint">Escolhe quantas quiser — pode marcar tudo que se encaixa.</p>
+          <p class="step__hint">Escolhe quantas quiser.</p>
           <span class="badge-required">obrigatório</span>
         </div>
-
         <div class="checkbox-grid">
-
-          <label class="checkbox-card checkbox-card--magenta">
+          <label class="checkbox-card" style="--c: var(--magenta)">
             <input type="checkbox" name="tipo[]" value="Fofoca/Polêmica" />
-            <span class="checkbox-card__icon">🍿</span>
-            <span class="checkbox-card__label">Fofoca / Polêmica</span>
-            <span class="checkbox-card__check">✓</span>
+            <span class="cc__icon">🍿</span>
+            <span class="cc__label">Fofoca / Polêmica</span>
+            <span class="cc__check">✓</span>
           </label>
-
-          <label class="checkbox-card checkbox-card--orange">
-            <input type="checkbox" name="tipo[]" value="Denúncia de má conduta" />
-            <span class="checkbox-card__icon">📢</span>
-            <span class="checkbox-card__label">Denúncia de má conduta</span>
-            <span class="checkbox-card__check">✓</span>
+          <label class="checkbox-card" style="--c: var(--laranja)">
+            <input type="checkbox" name="tipo[]" value="Denúncia" />
+            <span class="cc__icon">📢</span>
+            <span class="cc__label">Denúncia de má conduta</span>
+            <span class="cc__check">✓</span>
           </label>
-
-          <label class="checkbox-card checkbox-card--cyan">
+          <label class="checkbox-card" style="--c: var(--cyan)">
             <input type="checkbox" name="tipo[]" value="Barraco/Treta" />
-            <span class="checkbox-card__icon">🔥</span>
-            <span class="checkbox-card__label">Barraco / Treta</span>
-            <span class="checkbox-card__check">✓</span>
+            <span class="cc__icon">🔥</span>
+            <span class="cc__label">Barraco / Treta</span>
+            <span class="cc__check">✓</span>
           </label>
-
-          <label class="checkbox-card checkbox-card--purple">
-            <input type="checkbox" name="tipo[]" value="Golpe/Fraude no mercado" />
-            <span class="checkbox-card__icon">🕵️</span>
-            <span class="checkbox-card__label">Golpe / Fraude no mercado</span>
-            <span class="checkbox-card__check">✓</span>
+          <label class="checkbox-card" style="--c: var(--purple)">
+            <input type="checkbox" name="tipo[]" value="Golpe/Fraude" />
+            <span class="cc__icon">🕵️</span>
+            <span class="cc__label">Golpe / Fraude no Mercado</span>
+            <span class="cc__check">✓</span>
           </label>
-
-          <label class="checkbox-card checkbox-card--azul">
-            <input type="checkbox" name="tipo[]" value="Bastidores que ninguém viu" />
-            <span class="checkbox-card__icon">🎬</span>
-            <span class="checkbox-card__label">Bastidores que ninguém viu</span>
-            <span class="checkbox-card__check">✓</span>
+          <label class="checkbox-card" style="--c: var(--azul)">
+            <input type="checkbox" name="tipo[]" value="Bastidores" />
+            <span class="cc__icon">🎬</span>
+            <span class="cc__label">Bastidores que ninguém viu</span>
+            <span class="cc__check">✓</span>
           </label>
-
-          <label class="checkbox-card checkbox-card--gray">
+          <label class="checkbox-card" style="--c: #888">
             <input type="checkbox" name="tipo[]" value="Outro" />
-            <span class="checkbox-card__icon">💬</span>
-            <span class="checkbox-card__label">Outro</span>
-            <span class="checkbox-card__check">✓</span>
+            <span class="cc__icon">💬</span>
+            <span class="cc__label">Outro</span>
+            <span class="cc__check">✓</span>
           </label>
-
         </div>
-        <p class="field-error hidden" id="error-tipo">Seleciona pelo menos um tipo!</p>
+        <p class="field-error hidden" id="error-tipo">⚠️ Seleciona pelo menos um tipo!</p>
       </section>
 
-      <!-- ───────────────────────────────
-           STEP 2 — CONTE TUDO
-      ─────────────────────────────────── -->
+      <!-- STEP 2 -->
       <section class="section section--step section--dark" id="step-2" data-step="2">
-
-        <div class="mic-float parallax-element" data-speed="0.2">
-          <img src="assets/mic-blue.png" alt="" aria-hidden="true" />
-        </div>
-
         <div class="step__header">
           <span class="step__number">02</span>
           <h2 class="step__title">Conta TUDO<br /><em>aqui!</em></h2>
-          <p class="step__hint">Pode escrever à vontade. Quanto mais detalhes, melhor!</p>
+          <p class="step__hint">Quanto mais detalhes, melhor!</p>
           <span class="badge-required">obrigatório</span>
         </div>
-
         <div class="field-wrap">
-          <textarea id="historia" name="historia" class="textarea" placeholder="Começa do início… quem, o quê, onde, quando e como. Não esquece nenhum detalhe!" rows="8" required minlength="30"></textarea>
-          <div class="textarea__counter">
-            <span id="charCount">0</span> caracteres
-          </div>
+          <textarea id="historia" name="historia" class="textarea" placeholder="Começa do início… quem, o quê, onde, quando e como." rows="8" required minlength="30"></textarea>
+          <div class="textarea__counter"><span id="charCount">0</span> caracteres</div>
         </div>
-        <p class="field-error hidden" id="error-historia">Conta a história primeiro!</p>
+        <p class="field-error hidden" id="error-historia">⚠️ Conta a história primeiro!</p>
       </section>
 
-      <!-- ───────────────────────────────
-           STEP 3 — UPLOAD DE PROVAS
-      ─────────────────────────────────── -->
+      <!-- STEP 3 -->
       <section class="section section--step" id="step-3" data-step="3">
-        <div class="section__bg-accent" style="--accent: var(--magenta)"></div>
-
+        <div class="step__accent" style="--c: /*var(--magenta)*/"></div>
         <div class="step__header">
           <span class="step__number">03</span>
           <h2 class="step__title">Tem<br /><em>provas?</em></h2>
-          <p class="step__hint">Prints, fotos ou vídeos — manda aqui! Vai ajudar a Léia a investigar.</p>
+          <p class="step__hint">Prints, fotos ou vídeos — manda aqui!</p>
           <span class="badge-opcional">opcional</span>
         </div>
-
         <div class="upload-zone" id="uploadZone">
           <input type="file" id="provas" name="provas" class="upload-input" accept="image/*,video/*,.pdf" multiple />
           <label for="provas" class="upload-label">
@@ -174,24 +138,18 @@
         </div>
       </section>
 
-      <!-- ───────────────────────────────
-           STEP 4 — NÍVEL DE URGÊNCIA
-      ─────────────────────────────────── -->
+      <!-- STEP 4 -->
       <section class="section section--step section--dark" id="step-4" data-step="4">
-
         <div class="step__header">
           <span class="step__number">04</span>
           <h2 class="step__title">Qual o nível<br />de <em>urgência?</em></h2>
-          <p class="step__hint">1 = Fofoquinha básica &nbsp;·&nbsp; 5 = BOMBA! Precisa sair AGORA!</p>
+          <p class="step__hint">1 = Fofoquinha básica &nbsp;·&nbsp; 5 = BOMBA!</p>
           <span class="badge-opcional">opcional</span>
         </div>
-
         <div class="urgency-scale">
           <div class="urgency-track">
             <input type="range" id="urgencia" name="urgencia" class="urgency-slider" min="1" max="5" value="1" step="1" />
-            <div class="urgency-labels">
-              <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-            </div>
+            <div class="urgency-labels"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
           </div>
           <div class="urgency-display" id="urgencyDisplay">
             <span class="urgency-emoji" id="urgencyEmoji">😴</span>
@@ -200,107 +158,65 @@
         </div>
       </section>
 
-      <!-- ───────────────────────────────
-           STEP 5 — INVESTIGAR + APELIDO
-      ─────────────────────────────────── -->
+      <!-- STEP 5 -->
       <section class="section section--step" id="step-5" data-step="5">
-        <div class="section__bg-accent" style="--accent: var(--cyan)"></div>
-
+        <div class="step__accent" style="--c: /*var(--cyan)*/"></div>
         <div class="step__header">
           <span class="step__number">05</span>
           <h2 class="step__title">A gente<br /><em>investiga?</em></h2>
-          <p class="step__hint">Quer que a HOFTV apure mais essa história antes de divulgar?</p>
+          <p class="step__hint">Quer que a HOFTV apure antes de divulgar?</p>
           <span class="badge-opcional">opcional</span>
         </div>
-
         <div class="toggle-group">
           <label class="toggle-card">
             <input type="radio" name="investigar" value="sim" />
-            <span class="toggle-card__label">
-              <span class="toggle-card__icon">🔍</span>
-              Sim, investiga!
-            </span>
+            <span class="toggle-card__label"><span>🔍</span> Sim, investiga!</span>
           </label>
           <label class="toggle-card">
             <input type="radio" name="investigar" value="nao" />
-            <span class="toggle-card__label">
-              <span class="toggle-card__icon">📡</span>
-              Pode divulgar logo!
-            </span>
+            <span class="toggle-card__label"><span>📡</span> Pode divulgar logo!</span>
           </label>
         </div>
-
-        <div class="step__sub-header">
+        <div class="step__sub">
           <h3 class="step__subtitle">Como podemos te chamar?</h3>
-          <p class="step__hint">Tipo "Anônimo SP" ou "A Testemunha" — isso NÃO revela sua identidade.</p>
+          <p class="step__hint">Tipo "Anônimo SP" ou "A Testemunha" <br> (isso NÃO revela sua identidade, é só pra gente se organizar)</p>
         </div>
-
         <div class="field-wrap">
           <input type="text" id="apelido" name="apelido" class="input" placeholder="Seu apelido secreto..." maxlength="40" />
         </div>
       </section>
 
-      <!-- ───────────────────────────────
-           STEP 6 — EMAIL ANÔNIMO + SUBMIT
-      ─────────────────────────────────── -->
+      <!-- STEP 6 -->
       <section class="section section--step section--dark" id="step-6" data-step="6">
-
-        <div class="leia-float parallax-element" data-speed="0.18">
-          <img src="assets/avatar.png" alt="Léia Dias" class="leia-img" />
-          <div class="leia-bubble">Posso te dar retorno! 😉</div>
-        </div>
-
         <div class="step__header">
           <span class="step__number">06</span>
           <h2 class="step__title">Email<br /><em>anônimo?</em></h2>
-          <p class="step__hint">
-            Use um email descartável tipo <strong>Guerrilla Mail</strong> se quiser retorno sem se expor.
-          </p>
+          <p class="step__hint">Use um email descartável tipo <strong>Guerrilla Mail</strong> se quiser retorno sem se expor.</p>
           <span class="badge-opcional">opcional</span>
         </div>
-
         <div class="field-wrap">
           <input type="email" id="email" name="email" class="input" placeholder="seuemail@guerrillamail.com" />
         </div>
-
         <div class="submit-wrap">
           <button type="submit" class="btn btn--submit" id="submitBtn">
             <span class="btn__text">Manda pra Léia!</span>
             <span class="btn__icon">🎤</span>
             <div class="btn__loader hidden" id="btnLoader"></div>
           </button>
-          <p class="submit__disclaimer">
-            🔒 Seus dados são 100% confidenciais. A HOFTV não divulga fontes.
-          </p>
         </div>
-
       </section>
 
     </form>
   </main>
 
-  <!-- ═══════════════════════════════════════
-       TELA DE CONFIRMAÇÃO
-  ═══════════════════════════════════════ -->
+  <!-- CONFIRMAÇÃO -->
   <div class="confirmation hidden" id="confirmation">
     <div class="confirmation__inner">
-      <div class="confirmation__mic">
-        <img src="assets/mic-blue.png" alt="HOFTV" />
-      </div>
-      <div class="confirmation__leia">
-        <img src="assets/avatar.png" alt="Léia Dias" />
-      </div>
       <h2 class="confirmation__title glitch" data-text="RECEBEMOS!">RECEBEMOS!</h2>
-      <p class="confirmation__text">
-        A Léia já tá sabendo de tudo. Em breve essa história pode rolar no <strong>HOFOFOCA!</strong>
-      </p>
-      <p class="confirmation__sub">
-        Quer mandar mais? Pode enviar quantas vezes quiser.<br />
-        <strong>Fica de olho na HOFTV 👀</strong>
-      </p>
+      <p class="confirmation__text">A Léia já tá sabendo de tudo. Em breve essa história pode rolar no <strong>HOFOFOCA!</strong></p>
+      <p class="confirmation__sub">Fica de olho na <strong>HOFTV 👀</strong></p>
       <button class="btn btn--primary" onclick="resetForm()">Mandar mais uma!</button>
     </div>
-    <div class="confirmation__bg-noise"></div>
   </div>
 
   <script src="script.js"></script>
