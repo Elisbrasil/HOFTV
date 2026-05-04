@@ -237,7 +237,6 @@ if (form) {
     e.preventDefault();
 
     if (!validateForm()) {
-      // Scroll até o primeiro erro visível
       const firstError = document.querySelector(".field-error:not(.hidden)");
       if (firstError) {
         firstError
@@ -253,39 +252,44 @@ if (form) {
     submitBtn.disabled = true;
 
     try {
-      const formData = new FormData(form);
+      const formData = new FormData();
 
-      const data = {
-        tipo: formData.getAll("tipo[]").join(", "),
-        historia: formData.get("historia"),
-        urgencia: formData.get("urgencia"),
-        investigar: formData.get("investigar"),
-        apelido: formData.get("apelido"),
-        email: formData.get("email"),
-      };
+      formData.append(
+        "tipo",
+        Array.from(document.querySelectorAll('input[name="tipo[]"]:checked'))
+          .map((el) => el.value)
+          .join(", "),
+      );
+
+      formData.append("historia", document.getElementById("historia").value);
+      formData.append("urgencia", document.getElementById("urgencia").value);
+
+      formData.append(
+        "investigar",
+        document.querySelector('input[name="investigar"]:checked')?.value || "",
+      );
+
+      formData.append("apelido", document.getElementById("apelido").value);
+      formData.append("email", document.getElementById("email").value);
 
       const response = await fetch(
         "https://script.google.com/macros/s/AKfycbwgfB4wVL7WwzKn1j8Mz_wPZHX_SEfoeCsHj3hLlxpdup91FZgrcAt4-jw1R7MW-9fu/exec",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
+          body: formData,
         },
       );
 
-      const result = await response.json();
-
-      if (result.success) {
-        showConfirmation();
-      } else {
-        throw new Error(result.error);
+      if (!response.ok) {
+        throw new Error("Falha no envio");
       }
+
+      showConfirmation();
     } catch (err) {
       console.error("Erro no envio:", err);
 
       if (btnText) btnText.textContent = "Erro! tenta de novo";
+
       if (btnLoader) btnLoader.classList.add("hidden");
 
       if (btnIcon) {
