@@ -268,6 +268,8 @@ if (form) {
       if (uploadInput.files.length > 0) {
         formData.append("provas", uploadInput.files[0]);
       }
+      console.log("arquivos:", uploadInput.files);
+      console.log("primeiro:", uploadInput.files[0]);
 
       const response = await fetch(
         "https://script.google.com/macros/s/AKfycbw802gdOouG_I69ZvZQjeLIva0oUgZihkS4AZp1VQpqT2eB54sOXJbqClgkR0x9jIwX/exec",
