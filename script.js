@@ -257,16 +257,12 @@ if (form) {
       const response = await fetch(form.action, {
         method: "POST",
         body: formData,
+        mode: "no-cors",
       });
 
-      if (response.ok) {
-        showConfirmation();
-      } else {
-        throw new Error("Resposta não OK: " + response.status);
-      }
+      showConfirmation();
     } catch (err) {
       console.error("Erro no envio:", err);
-      // Feedback de erro amigável
       if (btnText) btnText.textContent = "Erro! Tenta de novo.";
       if (btnLoader) btnLoader.classList.add("hidden");
       if (btnIcon) {
