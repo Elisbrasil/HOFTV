@@ -257,7 +257,6 @@ if (form) {
       const response = await fetch(form.action, {
         method: "POST",
         body: formData,
-        headers: { Accept: "application/json" },
       });
 
       if (response.ok) {
