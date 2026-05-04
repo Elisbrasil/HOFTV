@@ -254,25 +254,45 @@ if (form) {
 
     try {
       const formData = new FormData(form);
-      await fetch(
-        "https://hook.us2.make.com/dzh6kokf56xni62dlnic7ps2936n4zmz",
+
+      const data = {
+        tipo: formData.getAll("tipo[]").join(", "),
+        historia: formData.get("historia"),
+        urgencia: formData.get("urgencia"),
+        investigar: formData.get("investigar"),
+        apelido: formData.get("apelido"),
+        email: formData.get("email"),
+      };
+
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbwgfB4wVL7WwzKn1j8Mz_wPZHX_SEfoeCsHj3hLlxpdup91FZgrcAt4-jw1R7MW-9fu/exec",
         {
           method: "POST",
-          body: JSON.stringify(Object.fromEntries(formData)),
-          headers: { "Content-Type": "application/json" },
-          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
         },
       );
 
-      showConfirmation();
+      const result = await response.json();
+
+      if (result.success) {
+        showConfirmation();
+      } else {
+        throw new Error(result.error);
+      }
     } catch (err) {
       console.error("Erro no envio:", err);
-      if (btnText) btnText.textContent = "Erro! Tenta de novo.";
+
+      if (btnText) btnText.textContent = "Erro! tenta de novo";
       if (btnLoader) btnLoader.classList.add("hidden");
+
       if (btnIcon) {
         btnIcon.classList.remove("hidden");
         btnIcon.textContent = "⚠️";
       }
+
       submitBtn.disabled = false;
     }
   });
