@@ -272,6 +272,10 @@ if (form) {
       formData.append("apelido", document.getElementById("apelido").value);
       formData.append("email", document.getElementById("email").value);
 
+      if (uploadInput.files.length > 0) {
+        formData.append("provas", uploadInput.files[0]);
+      }
+
       const response = await fetch(
         "https://script.google.com/macros/s/AKfycbyRs2BLDN1bJwJnef91m7fU0354U7P1qp4WeHmVojQAFA0hDnscQ1_ndTaYpkUcxzEA/exec",
         {
