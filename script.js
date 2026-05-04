@@ -254,11 +254,15 @@ if (form) {
 
     try {
       const formData = new FormData(form);
-      const response = await fetch(form.action, {
-        method: "POST",
-        body: formData,
-        mode: "no-cors",
-      });
+      const response = (response = await fetch(
+        "https://hook.us2.make.com/dzh6kokf56xni62dlnic7ps2936n4zmz",
+        {
+          method: "POST",
+          body: JSON.stringify(Object.fromEntries(formData)),
+          headers: { "Content-Type": "application/json" },
+          mode: "no-cors",
+        },
+      ));
 
       showConfirmation();
     } catch (err) {
