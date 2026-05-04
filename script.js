@@ -237,12 +237,6 @@ if (form) {
     e.preventDefault();
 
     if (!validateForm()) {
-      const firstError = document.querySelector(".field-error:not(.hidden)");
-      if (firstError) {
-        firstError
-          .closest(".section")
-          ?.scrollIntoView({ behavior: "smooth", block: "center" });
-      }
       return;
     }
 
@@ -272,28 +266,27 @@ if (form) {
       formData.append("apelido", document.getElementById("apelido").value);
       formData.append("email", document.getElementById("email").value);
 
-      if (uploadInput.files.length > 0) {
-        formData.append("provas", uploadInput.files[0]);
-      }
-
       const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbyRs2BLDN1bJwJnef91m7fU0354U7P1qp4WeHmVojQAFA0hDnscQ1_ndTaYpkUcxzEA/exec",
+        "https://script.google.com/macros/s/AKfycbw802gdOouG_I69ZvZQjeLIva0oUgZihkS4AZp1VQpqT2eB54sOXJbqClgkR0x9jIwX/exec",
         {
           method: "POST",
           body: formData,
         },
       );
 
-      if (!response.ok) {
-        throw new Error("Falha no envio");
+      const result = await response.text();
+
+      console.log(result);
+
+      if (result !== "OK") {
+        throw new Error(result);
       }
 
       showConfirmation();
     } catch (err) {
       console.error("Erro no envio:", err);
 
-      if (btnText) btnText.textContent = "Erro! tenta de novo";
-
+      if (btnText) btnText.textContent = "Erro!";
       if (btnLoader) btnLoader.classList.add("hidden");
 
       if (btnIcon) {
@@ -305,7 +298,6 @@ if (form) {
     }
   });
 }
-
 function showConfirmation() {
   const confirmation = document.getElementById("confirmation");
   if (!confirmation) return;
