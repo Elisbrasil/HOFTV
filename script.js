@@ -273,7 +273,7 @@ if (form) {
       formData.append("email", document.getElementById("email").value);
 
       const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbwgfB4wVL7WwzKn1j8Mz_wPZHX_SEfoeCsHj3hLlxpdup91FZgrcAt4-jw1R7MW-9fu/exec",
+        "https://script.google.com/macros/s/AKfycbyRs2BLDN1bJwJnef91m7fU0354U7P1qp4WeHmVojQAFA0hDnscQ1_ndTaYpkUcxzEA/exec",
         {
           method: "POST",
           body: formData,
