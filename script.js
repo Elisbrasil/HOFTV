@@ -179,9 +179,17 @@ if (uploadZone && uploadInput) {
     Array.from(files).forEach((file) => {
       const item = document.createElement("div");
       item.className = "upload-preview__item";
-      item.innerHTML = `📄 ${file.name} <small>(${formatBytes(file.size)})</small>`;
+      item.innerHTML = `
+      📄 ${file.name} <small>(${formatBytes(file.size)})</small>
+      <button type="button" class="upload-preview__remove" onclick="clearUpload()">✕</button>
+    `;
       uploadPreview.appendChild(item);
     });
+  }
+
+  function clearUpload() {
+    uploadInput.value = "";
+    uploadPreview.innerHTML = "";
   }
 
   function formatBytes(bytes) {
