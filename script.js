@@ -1,5 +1,18 @@
 "use strict";
 
+const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dkypbl6cy/auto/upload";
+const CLOUDINARY_PRESET = "hofofoca";
+
+async function uploadToCloudinary(file) {
+  const data = new FormData();
+  data.append("file", file);
+  data.append("upload_preset", CLOUDINARY_PRESET);
+
+  const res = await fetch(CLOUDINARY_URL, { method: "POST", body: data });
+  const json = await res.json();
+  return json.secure_url;
+}
+
 document.addEventListener("mousemove", (e) => {
   document.body.style.setProperty("--cx", e.clientX + "px");
   document.body.style.setProperty("--cy", e.clientY + "px");
@@ -267,16 +280,8 @@ if (form) {
       formData.append("email", document.getElementById("email").value);
 
       if (uploadInput.files.length > 0) {
-        const file = uploadInput.files[0];
-
-        const base64 = await new Promise((resolve) => {
-          const reader = new FileReader();
-          reader.onload = () => resolve(reader.result.split(",")[1]);
-          reader.readAsDataURL(file);
-        });
-
-        formData.append("fileName", file.name);
-        formData.append("fileData", base64);
+        const fileUrl = await uploadToCloudinary(uploadInput.files[0]);
+        formData.append("fileUrl", fileUrl);
       }
 
       const response = await fetch(
