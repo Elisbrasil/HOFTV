@@ -1,6 +1,6 @@
 "use strict";
 
-const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dkypbl6cy/auto/upload";
+const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/df35zttjm/auto/upload";
 const CLOUDINARY_PRESET = "hofofoca";
 
 async function uploadToCloudinary(file) {
