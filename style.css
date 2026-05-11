@@ -64,7 +64,7 @@ body::after {
 /* ─── PARALLAX BG ─────────────────────────────── */
 .parallax-bg {
   position: fixed;
-  inset: -8%;
+  inset: -10%;
   background: url("assets/fundo.png") center center / cover no-repeat;
   will-change: transform;
   z-index: 0;

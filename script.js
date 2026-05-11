@@ -29,7 +29,7 @@ window.addEventListener("scroll", () => {
       const scrollY = window.scrollY;
 
       if (parallaxBg) {
-        parallaxBg.style.transform = `translateY(${scrollY * 0.25}px)`;
+        parallaxBg.style.transform = `translateY(${scrollY * -0.25}px)`;
       }
 
       parallaxElements.forEach((el) => {
