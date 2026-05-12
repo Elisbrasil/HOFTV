@@ -421,3 +421,137 @@ window.addEventListener(
   },
   { passive: true },
 );
+
+/* ═══════════════════════════════════════════════ */
+/* SISTEMA DE CONSENTIMENTO LEGAL - HOFOFOCA       */
+/* ═══════════════════════════════════════════════ */
+
+(function () {
+  "use strict";
+
+  /* ─── BANNER LEGAL FECHÁVEL ─────────────────── */
+  const banner = document.getElementById("legalBanner");
+  const closeBannerBtn = document.getElementById("closeBanner");
+
+  if (closeBannerBtn && banner) {
+    closeBannerBtn.addEventListener("click", function () {
+      banner.classList.add("hidden");
+      // Salva preferência no localStorage
+      localStorage.setItem("hofofoca_banner_closed", "true");
+    });
+
+    // Verifica se já foi fechado antes
+    if (localStorage.getItem("hofofoca_banner_closed") === "true") {
+      banner.classList.add("hidden");
+    }
+  }
+
+  /* ─── VALIDAÇÃO DE CONSENTIMENTO ────────────── */
+  const consentCheckbox = document.getElementById("terms-consent");
+  const submitButton = document.getElementById("submitBtn");
+  const consentError = document.getElementById("consent-error");
+  const form = document.getElementById("hofofocaForm");
+
+  if (!consentCheckbox || !submitButton) {
+    console.warn("⚠️ Elementos de consentimento não encontrados");
+    return;
+  }
+
+  // BLOQUEIA botão até marcar checkbox
+  submitButton.disabled = true;
+
+  // Monitora mudanças no checkbox
+  consentCheckbox.addEventListener("change", function () {
+    submitButton.disabled = !this.checked;
+
+    // Remove erro se marcar
+    if (this.checked && consentError) {
+      consentError.classList.add("hidden");
+    }
+  });
+
+  // VALIDAÇÃO EXTRA no submit do formulário
+  if (form) {
+    form.addEventListener(
+      "submit",
+      function (e) {
+        if (!consentCheckbox.checked) {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+
+          // Mostra erro
+          if (consentError) {
+            consentError.classList.remove("hidden");
+          }
+
+          // Scroll suave até o checkbox
+          consentCheckbox.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+          });
+
+          // Destaca o checkbox
+          const consentWrap = document.querySelector(".consent-wrap");
+          if (consentWrap) {
+            consentWrap.style.animation = "none";
+            setTimeout(() => {
+              consentWrap.style.animation = "shake 0.5s";
+            }, 10);
+          }
+
+          return false;
+        }
+      },
+      true,
+    ); // Usa capture phase para interceptar antes
+  }
+
+  // Log de auditoria (opcional - útil para compliance)
+  consentCheckbox.addEventListener("change", function () {
+    if (this.checked) {
+      const timestamp = new Date().toISOString();
+      console.log("✅ Consentimento aceito:", timestamp);
+
+      // Pode adicionar campo hidden no form para registrar
+      let timestampInput = document.getElementById("consent_timestamp");
+      if (!timestampInput) {
+        timestampInput = document.createElement("input");
+        timestampInput.type = "hidden";
+        timestampInput.id = "consent_timestamp";
+        timestampInput.name = "consent_timestamp";
+        form.appendChild(timestampInput);
+      }
+      timestampInput.value = timestamp;
+    }
+  });
+})();
+
+/* ─── RESET FORM (atualizado para limpar consentimento) ─── */
+const originalResetForm = window.resetForm;
+window.resetForm = function () {
+  // Chama função original
+  if (originalResetForm) originalResetForm();
+
+  // Reseta checkbox de consentimento
+  const consentCheckbox = document.getElementById("terms-consent");
+  const submitButton = document.getElementById("submitBtn");
+  const consentError = document.getElementById("consent-error");
+
+  if (consentCheckbox) {
+    consentCheckbox.checked = false;
+  }
+
+  if (submitButton) {
+    submitButton.disabled = true;
+  }
+
+  if (consentError) {
+    consentError.classList.add("hidden");
+  }
+
+  // Remove timestamp se existir
+  const timestampInput = document.getElementById("consent_timestamp");
+  if (timestampInput) {
+    timestampInput.remove();
+  }
+};

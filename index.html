@@ -13,6 +13,16 @@
 </head>
 
 <body>
+  <!--<div class="legal-banner" id="legalBanner">
+    <div class="legal-banner__content">
+      <p>
+        🔒 Sua identidade está protegida. Ao usar este formulário, você concorda com nossos
+        <a href="/termos-de-uso.html" target="_blank" rel="noopener">Termos de Uso</a> e
+        <a href="/politica-privacidade.html" target="_blank" rel="noopener">Política de Privacidade</a>.
+      </p>
+      <button class="legal-banner__close" id="closeBanner" aria-label="Fechar aviso">✕</button>
+    </div>
+  </div>-->
 
   <!-- PARALLAX BG -->
   <div class="parallax-bg" id="parallaxBg"></div>
@@ -186,6 +196,20 @@
         <div class="field-wrap">
           <input type="email" id="email" name="email" class="input" placeholder="seuemail@guerrillamail.com" />
         </div>
+        <div class="consent-wrap">
+          <label class="consent-inline">
+            <input type="checkbox" id="terms-consent" required>
+            <span class="consent-text">
+              Li e aceito os
+              <a href="/termos-de-uso.html" target="_blank" rel="noopener">Termos de Uso</a> e
+              <a href="/politica-privacidade.html" target="_blank" rel="noopener">Política de Privacidade</a>.
+              Declaro que tenho +18 anos e que as informações são verdadeiras.
+            </span>
+          </label>
+          <p class="consent-error hidden" id="consent-error">
+            ⚠️ Você precisa aceitar os termos para continuar
+          </p>
+        </div>
         <div class="submit-wrap">
           <button type="submit" class="btn btn--submit" id="submitBtn">
             <span class="btn__text">Manda pra Léia!</span>
@@ -207,7 +231,18 @@
       <button class="btn btn--primary" onclick="resetForm()">Mandar mais uma!</button>
     </div>
   </div>
-
+  <footer class="legal-footer">
+    <div class="footer-content">
+      <p>© 2026 HOFTV - Todos os direitos reservados</p>
+      <nav class="footer-links">
+        <a href="/termos-de-uso.html" target="_blank">Termos de Uso</a>
+        <span>•</span>
+        <a href="/politica-privacidade.html" target="_blank">Política de Privacidade</a>
+        <span>•</span>
+        <a href="mailto:privacidade@hoftv.com.br">Contato DPO</a>
+      </nav>
+    </div>
+  </footer>
   <script src="script.js"></script>
 </body>
 
